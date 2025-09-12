@@ -1,50 +1,40 @@
-gsap.to("#box", {
-  x: 400,
+gsap.from("#page1 #box", {
+  scale: 0,
   duration: 3,
-  backgroundColor: "blue",
   rotate: 180,
-  // it paly 3 times - because 1 default and 2 more repeat - it is not a 2 time animation. i is repeat animation 2 times.
-  repeat: 2,
-  // -1 it is means paly infite
-  repeat: -1,
-  // gsap.to it go to one direction. yoyo it go and come back
-  yoyo: true,
 });
 
-gsap.from("#box2", {
-  x: 400,
+gsap.from("#page2 #box", {
+  scale: 0,
   duration: 3,
-  backgroundColor: "yellow",
-  rotate: -180,
+  rotate: 480,
+  //   scrollTrigger: "#page2 #box",
+  scrollTrigger: {
+    trigger: "#page2 #box",
+    scroller: "body",
+    markers: true,
+    start: "top 60%",
+    end: "top 20%",
+    // scrub it help to animation accoding scrolling not a duration
+    // scrub: true,
+    scrub: 6,
+    // it just like dispalay fix
+    // pin:true
+  },
 });
 
-gsap.from("h1", {
-  opacity: 0,
-  y: 40,
-  duration: 1,
-  color: "red",
-  //   stagger it play one by one
-  //   stagger: 0.2,
-  //   stagger: 5,
-  //   stagger: -1,
-  stagger: 1,
-});
-
-// time line start
-let tl = gsap.timeline();
-
-tl.to("#box3", {
-  x: 1000,
-  rotate: 30,
-  duration: 3,
-});
-tl.to("#box4", {
-  x: 1000,
-  rotate: 30,
-  duration: 3,
-});
-tl.to("#box5", {
-  x: 1000,
-  rotate: 30,
-  duration: 3,
+gsap.to("#page4 h1", {
+  transform: "translateX(-150%)",
+  scrollTrigger: {
+    trigger: "#page4 ",
+    scroller: "body",
+    markers: true,
+    start: "top 0%",
+    end: "top -100%",
+    // scrub it help to animation accoding scrolling not a duration
+    // scrub: true,
+    scrub: 2,
+    // it just like dispalay fix
+    pin: true,
+  },
 });

@@ -4,18 +4,38 @@
 }
 body {
   background-color: black;
+  overflow-x: hidden;
 }
-#box,
-#box2,
-#box3,
-#box4,
-#box5 {
-  height: 200px;
-  width: 200px;
-  background-color: red;
+#page1,
+#page2,
+#page3,
+#page4 {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-h1 {
-  opacity: 1;
-  color: white;
-  
+#page4 h1 {
+  font-size: 29rem;
+  white-space: unset;
+  transform: translateX(20%);
+}
+#page1 {
+  background-color: rgb(148, 15, 137);
+}
+#page2 {
+  background-color: rgb(50, 194, 14);
+}
+#page3 {
+  background-color: rgb(13, 67, 216);
+}
+#page4 {
+  background-color: rgb(192, 158, 9);
+}
+
+#box {
+  height: 100px;
+  width: 100px;
+  background-color: pink;
 }
