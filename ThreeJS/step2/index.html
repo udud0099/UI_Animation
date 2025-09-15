@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<h1 class="text-3xl font-bold underline text-red-500">Hello World</h1>
+    <canvas id="draw">
+
+    </canvas>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js" integrity="sha512-vnmn/Qqn6aG0POAc9mIGzjq0IybrvxJXYDafNvp9JSnDGxeF3pbkSqLvf+YGd5ku63pT7sa/jxHn7/d0mU8+tA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        
+        const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+camera.position.z = 5;
+
+
+const canvas = document.querySelector("#draw");
+const renderer = new THREE.WebGLRenderer({canvas:canvas});
+renderer.setSize( window.innerWidth, window.innerHeight );
+// document.body.appendChild( renderer.domElement )
+
+function animate() {
+    window.requestAnimationFrame(animate);
+  renderer.render( scene, camera );
+  cube.rotation.x += 0.01;
+cube.rotation.y += 0.01;
+}
+// renderer.setAnimationLoop( animate );
+
+animate();
+    </script>
+    
+</body>
+</html>
