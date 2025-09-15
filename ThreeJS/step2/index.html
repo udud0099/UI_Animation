@@ -17,32 +17,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js" integrity="sha512-vnmn/Qqn6aG0POAc9mIGzjq0IybrvxJXYDafNvp9JSnDGxeF3pbkSqLvf+YGd5ku63pT7sa/jxHn7/d0mU8+tA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        
-        const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        // scene 
+        //  camera 
+        //  mesh - geometry and material
+        //  renderer 
+        //   request animation frame 
+        //   
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+        // scene  vs camera
+        // scene is hole 3d world
+        // camera is the point of view of the scene
+        // mesh is the object in the scene
+        // geometry is the shape of the object
+        // material is the color of the object
+        // texture is the image on the object
+        // light is the source of light in the scene
 
-camera.position.z = 5;
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 5;
+        scene.add(camera);
+
+        let box = new THREE.BoxGeometry(1, 1, 1); 
+        let material = new THREE.MeshBasicMaterial({color: "red"});
+        let mesh = new THREE.Mesh(box, material);
+
+// mesh.position.x = 1;
+// mesh.position.y = 1;
+// mesh.position.z = -3;
 
 
-const canvas = document.querySelector("#draw");
-const renderer = new THREE.WebGLRenderer({canvas:canvas});
-renderer.setSize( window.innerWidth, window.innerHeight );
-// document.body.appendChild( renderer.domElement )
+// mesh.rotation.x = 1;
+// mesh.rotation.y = 1;
+// mesh.rotation.z = 1;
 
-function animate() {
-    window.requestAnimationFrame(animate);
-  renderer.render( scene, camera );
-  cube.rotation.x += 0.01;
-cube.rotation.y += 0.01;
-}
-// renderer.setAnimationLoop( animate );
+// mesh.scale.x = 2;
 
-animate();
+
+//mesh.rotation.y = Math.PI / 4; // 45 degree - 3.14 == 360 / 4 == 90 degree
+
+
+
+        scene.add(mesh);
+
+        let canvas = document.querySelector("canvas");
+        let renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.render(scene, camera);
+
+        // this is for animation according to computer speed - it depend in computer FPS
+        // function animate() {
+        //     window.requestAnimationFrame(animate); // this is the best way to animate this is work according computer speed 
+        //     renderer.render(scene, camera);
+        //     mesh.rotation.y += 0.01;
+        //     // this is show anymation fast or slow according to computer speed
+        // }
+        // animate();
+
+        let clock = new THREE.Clock();
+        // it shaws how much time is passed from the start of the animation
+        // this way it don't effect on computer speed - it is more accurate and all user fell same animation
+        function animate() {
+            window.requestAnimationFrame(animate); // this is the best way to animate this is work according computer time 
+            renderer.render(scene, camera);
+            mesh.rotation.y = clock.getElapsedTime() / 2;
+            // this is show anymation according to computer time
+        }
+        animate();
+
+
+
+
+         
     </script>
     
 </body>
