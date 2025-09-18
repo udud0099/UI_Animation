@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "gsap": "^3.13.0",
     "imagesloaded": "^5.0.0",
-    "three": "^0.180.0"
+    "three": "^0.180.0",
+    "vite-plugin-glsl": "^1.5.1"
   }
 }
